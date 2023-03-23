@@ -17,13 +17,13 @@ CREATE TABLE Ubicacion (
 );
 
 CREATE TABLE Envio (
-    Id_orden varchar(20)  NOT NULL,
+    Id_orden varchar(20) auto_increment NOT NULL,
     Tipo_envio varchar(128)  NOT NULL,
     CONSTRAINT Id_ordenPK PRIMARY KEY (Id_orden)
 );
 
 CREATE TABLE Cliente (
-    Id_cliente varchar(20)  NOT NULL,
+    Id_cliente varchar(20) auto_increment NOT NULL,
     Nombre varchar(128)  NOT NULL,
     Segmento varchar(128)  NOT NULL,
     CONSTRAINT Id_clientePK PRIMARY KEY (Id_cliente)
@@ -37,10 +37,10 @@ CREATE TABLE Producto (
     CONSTRAINT Id_productoPK PRIMARY KEY (Id_producto)
 );
 
-
+SELECT * FROM Fechas_orden;
 CREATE TABLE Fechas_orden(
 	date_key int,
-	full_date date,
+	full_date datetime,
     day_of_week int,
     day_num_in_month int,
     day_name varchar(50),
@@ -51,16 +51,17 @@ CREATE TABLE Fechas_orden(
     CONSTRAINT Id_dateordenPK PRIMARY KEY (date_key)
 );
 
+SELECT * FROM fechas_envio;
 CREATE TABLE Fechas_envio(
     date_key int,
-	full_date date,
+	full_date datetime,
     day_of_week int,
     day_num_in_month int,
     day_name varchar(50),
     weekday_flag varchar(50),
     month_name varchar(50),
     month_abbrev varchar(50),
-	_year int,
+	_year year,
     
     CONSTRAINT Id_dateenvioPK PRIMARY KEY (date_key)
 );
@@ -104,3 +105,12 @@ ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_orden
 ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_envio
     FOREIGN KEY (Fecha_envio)
     REFERENCES Fechas_envio (date_key);
+
+SELECT * FROM dl_test;
+SELECT max(`Order Date`),min(`Order Date`) from dl_test; # Fecha maxima 30/!2/2018 // Fecha minima 03/01/2015
+DROP TABLE fechas_envio;
+DROP TABLE fechas_orden;
+DROP TABLE fact_super;
+DROP TABLE cliente;
+
+#Sugerencias unir tabla de region con ubicacion
