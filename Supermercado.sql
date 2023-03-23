@@ -88,10 +88,6 @@ ALTER TABLE Fact_super ADD CONSTRAINT fact_orden
 ALTER TABLE Fact_super ADD CONSTRAINT fact_region
     FOREIGN KEY (Id_region)
     REFERENCES Region (Id_region);
-
-ALTER TABLE Fact_super ADD CONSTRAINT fact_fecha
-    FOREIGN KEY (Id_fecha)
-    REFERENCES Fechas (Id_fecha);
     
 ALTER TABLE Fact_super ADD CONSTRAINT fact_cliente
     FOREIGN KEY (Id_cliente)
