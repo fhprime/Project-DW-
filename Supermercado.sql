@@ -20,9 +20,9 @@ CREATE TABLE Ubicacion (
 
 
 CREATE TABLE Envio (
-    Id_orden varchar(20) NOT NULL,
+    Id_Envio int auto_increment,
     Tipo_envio varchar(128)  NOT NULL,
-    CONSTRAINT Id_ordenPK PRIMARY KEY (Id_orden)
+    CONSTRAINT Id_ordenPK PRIMARY KEY (Id_Envio)
 );
 
 
@@ -83,6 +83,7 @@ Id_region int NOT NULL,
 Id_ubicacion int NOT NULL,
 Id_cliente varchar(20)  NOT NULL,
 Id_producto int NOT NULL,
+Id_envio int NOT NULL, 
 Venta float NOT NULL,
 Cantidad int NOT NULL,
 Descuento float,
@@ -91,8 +92,8 @@ CONSTRAINT Id_ventaPK PRIMARY KEY (Id_orden)
 );
 
 ALTER TABLE Fact_super ADD CONSTRAINT fact_orden
-    FOREIGN KEY (Id_orden)
-    REFERENCES Envio (Id_orden);
+    FOREIGN KEY (Id_envio)
+    REFERENCES Envio (Id_Envio);
     
 ALTER TABLE Fact_super ADD CONSTRAINT fact_region
     FOREIGN KEY (Id_region)
@@ -128,6 +129,7 @@ SELECT * FROM fechas_envio;
 SELECT * FROM Region;
 SELECT * FROM Ubicacion;
 SELECT * FROM producto;
+SELECT * FROM Fact_super;
 
 DROP TABLE fechas_envio;
 DROP TABLE fechas_orden;
@@ -135,5 +137,6 @@ DROP TABLE fact_super;
 DROP TABLE cliente;
 DROP TABLE Producto;
 DROP TABLE Ubicacion;
+DROP TABLE Envio;
 
 #Sugerencias unir tabla de region con ubicacion
