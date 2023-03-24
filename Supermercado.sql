@@ -9,11 +9,12 @@ CREATE TABLE Region(
    );
    
 CREATE TABLE Ubicacion (
+	ID_Ubicacion int auto_increment,
     Codigo_postal int  NOT NULL,
     Pais varchar(128)  NOT NULL,
     Estado varchar(128)  NOT NULL,
     Ciudad varchar(128)  NOT NULL,
-    CONSTRAINT Codigo_postalPK PRIMARY KEY (Codigo_postal)
+    CONSTRAINT ID_UbicacionPK PRIMARY KEY (ID_Ubicacion)
 );
 
 
@@ -34,12 +35,16 @@ CREATE TABLE Cliente (
 );
 
 CREATE TABLE Producto (
-    Id_producto varchar(120)  NOT NULL,
-    Categoria varchar(128)  NOT NULL,
-    Subcategoria varchar(128)  NOT NULL,
-    Nombre varchar(128)  NOT NULL,
-    CONSTRAINT Id_productoPK PRIMARY KEY (Id_producto)
+	ID_Product int auto_increment,
+	Id_producto text  NOT NULL,
+    Categoria text NOT NULL,
+    Subcategoria text  NOT NULL,
+    Nombre text NOT NULL,
+    CONSTRAINT Id_productoPK PRIMARY KEY (ID_Product)
 );
+
+
+
 
 
 CREATE TABLE Fechas_orden(
@@ -109,6 +114,10 @@ ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_orden
 ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_envio
     FOREIGN KEY (Fecha_envio)
     REFERENCES Fechas_envio (date_key);
+    
+ALTER TABLE Fact_super ADD CONSTRAINT fact_Ubicacion
+    FOREIGN KEY (Id_ubicacion)
+    REFERENCES Ubicacion (ID_Ubicacion);
 
 SELECT * FROM dl_test;
 SELECT max(`Order Date`),min(`Order Date`) from dl_test; # Fecha maxima 30/!2/2018 // Fecha minima 03/01/2015
@@ -117,11 +126,15 @@ SELECT * FROM Envio;
 SELECT * FROM Cliente;
 SELECT * FROM Fechas_orden;
 SELECT * FROM fechas_envio;
+SELECT * FROM Region;
+SELECT * FROM Ubicacion;
+SELECT * FROM producto;
 
 DROP TABLE fechas_envio;
 DROP TABLE fechas_orden;
 DROP TABLE fact_super;
 DROP TABLE cliente;
 DROP TABLE Producto;
+DROP TABLE Ubicacion;
 
 #Sugerencias unir tabla de region con ubicacion
