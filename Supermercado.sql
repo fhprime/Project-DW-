@@ -81,9 +81,8 @@ Fecha_envio int,
 Id_orden varchar(20)  NOT NULL,
 Id_region int NOT NULL,
 Id_ubicacion int NOT NULL,
-Id_fecha int NOT NULL,
 Id_cliente varchar(20)  NOT NULL,
-Id_producto varchar(20)  NOT NULL,
+Id_producto int NOT NULL,
 Venta float NOT NULL,
 Cantidad int NOT NULL,
 Descuento float,
@@ -105,7 +104,7 @@ ALTER TABLE Fact_super ADD CONSTRAINT fact_cliente
     
 ALTER TABLE Fact_super ADD CONSTRAINT fact_producto
     FOREIGN KEY (Id_producto)
-    REFERENCES Producto (Id_producto);
+    REFERENCES Producto (ID_Product);
 
 ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_orden
     FOREIGN KEY (Fecha_orden)
