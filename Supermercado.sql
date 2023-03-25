@@ -76,9 +76,10 @@ CREATE TABLE Fechas_envio(
 );
 
 CREATE TABLE Fact_super (
+sk_super_fact int auto_increment,
 Fecha_orden int,
 Fecha_envio int, 
-Id_orden varchar(20)  NOT NULL,
+Id_orden varchar(14) not null,
 Id_region int NOT NULL,
 Id_ubicacion int NOT NULL,
 Id_cliente varchar(20)  NOT NULL,
@@ -88,16 +89,24 @@ Venta float NOT NULL,
 Cantidad int NOT NULL,
 Descuento float,
 Ganancia float NOT NULL,
-CONSTRAINT Id_ventaPK PRIMARY KEY (Id_orden)
+CONSTRAINT Id_ventaPK PRIMARY KEY (sk_super_fact)
 );
 
-ALTER TABLE Fact_super ADD CONSTRAINT fact_orden
-    FOREIGN KEY (Id_envio)
-    REFERENCES Envio (Id_Envio);
+ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_orden
+    FOREIGN KEY (Fecha_orden)
+    REFERENCES Fechas_orden (date_key);
     
+ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_envio
+    FOREIGN KEY (Fecha_envio)
+    REFERENCES Fechas_envio (date_key);
+
 ALTER TABLE Fact_super ADD CONSTRAINT fact_region
     FOREIGN KEY (Id_region)
     REFERENCES Region (Id_region);
+    
+ALTER TABLE Fact_super ADD CONSTRAINT fact_Ubicacion
+    FOREIGN KEY (Id_ubicacion)
+    REFERENCES Ubicacion (ID_Ubicacion);
     
 ALTER TABLE Fact_super ADD CONSTRAINT fact_cliente
     FOREIGN KEY (Id_cliente)
@@ -107,17 +116,11 @@ ALTER TABLE Fact_super ADD CONSTRAINT fact_producto
     FOREIGN KEY (Id_producto)
     REFERENCES Producto (ID_Product);
 
-ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_orden
-    FOREIGN KEY (Fecha_orden)
-    REFERENCES Fechas_orden (date_key);
+ALTER TABLE Fact_super ADD CONSTRAINT fact_orden
+    FOREIGN KEY (Id_envio)
+    REFERENCES Envio (Id_Envio);
     
-ALTER TABLE Fact_super ADD CONSTRAINT fact_Fechas_envio
-    FOREIGN KEY (Fecha_envio)
-    REFERENCES Fechas_envio (date_key);
-    
-ALTER TABLE Fact_super ADD CONSTRAINT fact_Ubicacion
-    FOREIGN KEY (Id_ubicacion)
-    REFERENCES Ubicacion (ID_Ubicacion);
+
 
 SELECT * FROM dl_test;
 SELECT max(`Order Date`),min(`Order Date`) from dl_test; # Fecha maxima 30/!2/2018 // Fecha minima 03/01/2015
@@ -139,4 +142,7 @@ DROP TABLE Producto;
 DROP TABLE Ubicacion;
 DROP TABLE Envio;
 
+SHOW CREATE TABLE fact_super;
+
+SELECT CHAR_LENGTH(Id_orden) FROM fact_super;
 #Sugerencias unir tabla de region con ubicacion
