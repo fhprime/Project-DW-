@@ -34,6 +34,9 @@ CREATE TABLE Cliente (
     CONSTRAINT Id_clientePK PRIMARY KEY (Id_cliente)
 );
 
+CALL SDC_CLIENT('AA-10315','Consumer');
+
+
 CREATE TABLE Producto (
 	ID_Product int auto_increment,
 	Id_producto text  NOT NULL,
