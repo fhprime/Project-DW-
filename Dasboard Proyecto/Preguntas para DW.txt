@@ -1,0 +1,6 @@
+Preguntas:
+1.	¿Cuáles son los meses de mayor venta por cada región?
+2.	¿Cuál es el porcentaje de venta por región del país?
+3.	¿Qué categorías y subcategorías de productos presentan las mayores ganancias para la compañía?
+4.	¿Qué tipo de envío presenta mayores ventas durante los fines de semana, en un periodo del 2016 al 2018?
+
