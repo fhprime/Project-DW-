@@ -1,7 +1,6 @@
 create database supermercado;
 
 use supermercado;
-
 CREATE TABLE Region(
     Id_region int  NOT NULL auto_increment,
     Nombre_region varchar(128)  NOT NULL,
@@ -46,17 +45,13 @@ CREATE TABLE Producto (
     CONSTRAINT Id_productoPK PRIMARY KEY (ID_Product)
 );
 
-
-
-
-
 CREATE TABLE Fechas_orden(
 	date_key int,
 	full_date datetime,
     day_of_week int,
     day_num_in_month int,
     day_name varchar(50),
-    weekday_flag varchar(50),
+    weekday_flag varchar(50),SDC_CLIENTSDC_CLIENT
     month_name varchar(50),
     month_abbrev varchar(50),
 	_year int,
